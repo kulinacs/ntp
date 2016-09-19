@@ -1,0 +1,16 @@
+---
+- name: Install ntp
+  xbps: pkg=ntp state=present
+
+- name: Configure openntpd
+  template: src=ntp.conf dest=/etc/ntpd.conf owner=root group=root mode=0644
+  notify:
+    - ntpd
+
+- name: Install ntp firewall rules
+  template: src=ntp.rules dest=/etc/iptables.d/ntp.rules owner=root group=root mode=0644
+  notify:
+    - iptables
+
+- name: Enable ntpd
+  file: src=/etc/sv/ntpd dest=/var/service/ntpd state=link

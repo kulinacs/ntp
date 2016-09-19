@@ -1,0 +1,3 @@
+*filter
+-A OUTPUT -p udp -d {{ ntp_server }} --dport 123 -j ACCEPT
+COMMIT
