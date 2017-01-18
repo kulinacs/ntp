@@ -1,3 +1,5 @@
 *filter
--A OUTPUT -p udp -d {{ ntp_server }} --dport 123 -j ACCEPT
+{% for clock in ntp_servers %}
+-A OUTPUT -p udp -d {{ clock }} --dport 123 -j ACCEPT
+{% endfor %}
 COMMIT
