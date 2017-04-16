@@ -25,7 +25,7 @@
     - iptables
 
 - name: Enable ntpd
-  file:
-    src: /etc/sv/ntpd
-    dest: /var/service/ntpd
-    state: link
+  runit:
+    name: ntpd
+    enabled: yes
+    state: started

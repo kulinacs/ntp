@@ -1,3 +1,5 @@
 ---
 - name: ntpd
-  command: sv restart ntpd
+  runit:
+    name: ntpd
+    state: restarted
